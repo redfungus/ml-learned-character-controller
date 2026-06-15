@@ -3,10 +3,7 @@
 
 This repository contains an ML learned character controller trained on data collected from a simulated character controller. For simplicity, the controller only predicts the rotation.
 
-<video width="640" controls>
-  <source src="https://github.com/redfungus/ml-learned-character-controller/raw/master/images/unity_best.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+https://github.com/redfungus/ml-learned-character-controller/raw/master/images/unity_best.mp4
 
 ## Key Technical Decisions
 
