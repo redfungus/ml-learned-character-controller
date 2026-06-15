@@ -1,0 +1,11 @@
+# Development dependencies
+
+# Testing
+pytest==9.0.2
+
+# Linting and formatting
+black==24.10.0
+isort==7.0.0
+flake8==6.1.0
+mypy==1.3.0
+black[jupyter]== 24.10.0

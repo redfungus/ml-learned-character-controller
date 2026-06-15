@@ -1,0 +1,62 @@
+# Default configuration for quaternion orientation prediction
+
+# Model configuration
+model:
+  name: mlp  # Options: mlp, split_encoder
+  hidden_dim: 128
+  num_layers: 2
+  dropout: 0
+  normalize_output: true  # Normalize output to unit quaternion
+  predict_angular_velocity: true  # Output 7 dims (quat + vel) instead of 4
+
+  # Split encoder model params (used when name: split_encoder)
+  # Separate encoders for state (quat, ang_vel) and control (pad x, y); dt is added in decoder
+  # state_encoder_dim: 64    # Hidden dimension for state encoder MLP
+  # control_encoder_dim: 32  # Hidden dimension for control encoder MLP
+  # decoder_dim: 64          # Hidden dimension for decoder MLP
+  # embedding_dim: 32        # Output dimension of each encoder
+  # num_encoder_layers: 2    # Number of hidden layers per encoder
+  # num_decoder_layers: 2    # Number of hidden layers in decoder
+
+# Loss configuration
+loss:
+  name: geodesic  # Options: mse, antipodal_mse, geodesic
+  norm_loss_weight: 0  # QuaterNet-style norm regularization: penalize (||output|| - 1)^2
+  angular_velocity_weight: 1.0  # Weight for angular velocity MSE loss (when predict_angular_velocity is true)
+
+# Data configuration
+data:
+  train_path: data/orientation_training_data.csv
+  val_split: 0.1
+  test_split: 0.1
+  batch_size: 64
+  num_workers: 4
+
+# Training configuration
+training:
+  seed: 42
+  max_epochs: 1000
+  learning_rate: 0.001
+  gradient_clip_val: 1.0
+  checkpoint: "..\\logs\\quaternion_prediction_26-02-04_03-56-31\\mlp_geodesic\\checkpoints\\epoch=5-val_loss=0.0000.ckpt"  # Path to checkpoint to resume from (empty = train from scratch)
+
+  # Multi-step rollout training (optional)
+  # When enabled, trains with autoregressive rollouts using teacher forcing
+  rollout:
+    enabled: true  # Set to true to enable multi-step rollout training
+    steps: 50        # Number of rollout steps
+    teacher_forcing_start: 0.9  # Start with full teacher forcing
+    teacher_forcing_end: 0.2    # End with 20% teacher forcing
+    decay_rate: 0.04            # Decay rate per epoch
+
+# Logging configuration
+logging:
+  project_name: quaternion_prediction
+  log_every_n_steps: 10
+  save_top_k: 3
+
+# Hardware configuration
+hardware:
+  accelerator: auto  # Options: auto, cpu, gpu, mps
+  devices: 1
+  precision: 32  # Options: 16, 32, bf16
