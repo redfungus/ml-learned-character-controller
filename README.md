@@ -3,7 +3,7 @@
 
 This repository contains an ML learned character controller trained on data collected from a simulated character controller. For simplicity, the controller only predicts the rotation.
 
-https://github.com/redfungus/ml-learned-character-controller/raw/master/images/unity_best.mp4
+![Unity demo](images/unity_best.gif)
 
 ## Key Technical Decisions
 
@@ -75,19 +75,13 @@ Below I show a sample trajectory the worst and best model:
 
 <img src="https://github.com/redfungus/ml-learned-character-controller/raw/master/images/drift_first_model.jpg" alt="drawing" width="640"/>
 
-<video width="640" controls>
-  <source src="https://github.com/redfungus/ml-learned-character-controller/raw/master/images/trajectory_video_first.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Unity demo](images/trajectory_video_first.gif)
 
 ### Multi-step training with angular velocity prediction
 
 <img src="https://github.com/redfungus/ml-learned-character-controller/raw/master/images/drift_best_model.jpg" alt="drawing" width="640"/>
 
-<video width="640" controls>
-  <source src="https://github.com/redfungus/ml-learned-character-controller/raw/master/images/trajectory_video_best.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Unity demo](images/trajectory_video_best.gif)
 
 ## Unity Prototype
 
@@ -96,17 +90,11 @@ The first few seconds of each video show random inputs from the same distributio
 
 ### Single-step training without angular velocity prediction
 
-<video width="640" controls>
-  <source src="[images/unity_first.mp4](https://github.com/redfungus/ml-learned-character-controller/raw/master/images/unity_first.mp4)" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Unity demo](images/unity_first.gif)
 
 ### Multi-step training with angular velocity prediction
 
-<video width="640" controls>
-  <source src="https://github.com/redfungus/ml-learned-character-controller/raw/master/images/unity_best.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+![Unity demo](images/unity_best.gif)
 
 ## References
 
